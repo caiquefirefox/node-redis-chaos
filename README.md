@@ -1,6 +1,7 @@
 # 🧪 Engenharia do Caos com Chaos Toolkit, Node.js e Redis
 
-Este projeto demonstra uma prova de conceito de **Engenharia do Caos** usando o [Chaos Toolkit](https://chaostoolkit.org/) para simular falhas no Redis de uma aplicação Node.js. Tudo é orquestrado com Docker Compose.
+Prova de conceito de **Engenharia do Caos** usando o [Chaos Toolkit](https://chaostoolkit.org/) para simular falhas no Redis de uma aplicação Node.js. <br/>
+Tudo foi orquestrado com Docker Compose 🙌
 
 ---
 
