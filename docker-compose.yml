@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis
+    container_name: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - chaos-net
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: node-redis-app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - redis
+    networks:
+      - chaos-net
+
+  chaos:
+    build:
+      context: .
+      dockerfile: Dockerfile.chaos
+    container_name: chaos-toolkit
+    working_dir: /chaos
+    volumes:
+      - ./chaos:/chaos
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - app
+    entrypoint: ["chaos", "run", "redis-failure.json"]
+    networks:
+      - chaos-net
+
+networks:
+  chaos-net:

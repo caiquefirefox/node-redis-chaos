@@ -1,0 +1,12 @@
+# Dockerfile.chaos
+FROM python:3.11-slim
+
+# Instalações necessárias
+RUN apt-get update && \
+    apt-get install -y docker.io curl && \
+    pip install --no-cache-dir chaostoolkit && \
+    apt-get clean
+
+WORKDIR /chaos
+
+CMD ["chaos", "run", "redis-failure.json"]
